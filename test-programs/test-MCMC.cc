@@ -6,16 +6,16 @@
 
 int main(int argc, char *argv[])
 {
-  int seed = std::atoi(argv[1]);
-  int numSteps = std::atoi(argv[2]);
+    int seed = std::atoi(argv[1]);
+    int numSteps = std::atoi(argv[2]);
 
-  Random::setSeed(std::atoi(argv[1]));
-  TestModel* model = new TestModel(10, 10.0);
+    Random::setSeed(std::atoi(argv[1]));
+    TestModel* model = new TestModel(10, 10.0);
 
-  MCMC mcmc;
-  mcmc.run(model, numSteps, std::cout);
+    MCMC mcmc;
+    mcmc.run(model, numSteps, std::cout);
 
-  delete model;
+    delete model;
 
-  return 0;
+    return 0;
 }

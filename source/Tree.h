@@ -7,7 +7,7 @@
 
 class Tree
 {
-  public:
+public:
 
     Tree(Node *rootNode = NULL);
     ~Tree();
@@ -23,7 +23,7 @@ class Tree
 
     NodeList terminalNodes() const;
 
-  private:
+private:
 
     void findTerminalNodes(Node *node, NodeList &nodes) const;
 

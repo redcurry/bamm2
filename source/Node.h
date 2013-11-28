@@ -9,7 +9,7 @@ typedef std::vector<Node *> NodeList;
 
 class Node
 {
-  public:
+public:
 
     Node();
     ~Node();
@@ -38,7 +38,7 @@ class Node
     int  childCount() const;
     bool hasChildNodes() const;
 
-  private:
+private:
 
     static void deleteNode(Node *node);
 

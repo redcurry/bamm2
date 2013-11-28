@@ -5,11 +5,11 @@
 template <typename ModelType>
 class MCMC
 {
-  public:
+public:
 
     void run(const ModelType& model, int numSteps) const;
 
-  protected:
+protected:
 
     virtual ModelProposal* createModelProposal(Model* model) const = 0;
 };

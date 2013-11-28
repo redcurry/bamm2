@@ -6,7 +6,7 @@
 
 class TreeModelProposal : public ModelProposal
 {
-  public:
+public:
 
     TreeModelProposal(TreeModel* model);
     virtual ~TreeModelProposal() { }
@@ -18,7 +18,7 @@ class TreeModelProposal : public ModelProposal
     //virtual double logLikelihoodRatio() const;
     //virtual double logProposalRatio() const;
 
-  private:
+private:
 
     void proposeEventMove();
     void proposeEventAddRemove();
@@ -34,7 +34,7 @@ class TreeModelProposal : public ModelProposal
 
 inline void TreeModelProposal::accept() const
 {
-  _model->events() = _proposedModel->events();
+    _model->events() = _proposedModel->events();
 }
 
 #endif

@@ -9,7 +9,7 @@ class ModelProposal;
 
 class TestModel : public Model
 {
-  public:
+public:
 
     TestModel(const TestModel* model);
     TestModel(int numEvents, double eventRate);
@@ -24,7 +24,7 @@ class TestModel : public Model
     double eventRate() const;
     void setEventRate(double eventRate);
 
-  private:
+private:
 
     int _numEvents;
     double _eventRate;
@@ -33,25 +33,25 @@ class TestModel : public Model
 
 inline int TestModel::numberOfEvents() const
 {
-  return _numEvents;
+    return _numEvents;
 }
 
 
 inline void TestModel::setNumberOfEvents(int numEvents)
 {
-  _numEvents = numEvents;
+    _numEvents = numEvents;
 }
 
 
 inline double TestModel::eventRate() const
 {
-  return _eventRate;
+    return _eventRate;
 }
 
 
 inline void TestModel::setEventRate(double eventRate)
 {
-  _eventRate = eventRate;
+    _eventRate = eventRate;
 }
 
 

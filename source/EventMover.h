@@ -7,11 +7,11 @@ class Node;
 
 class EventMover
 {
-  public:
+public:
 
     Event newMovedEvent(const Event& event, double newAbsoluteTime);
 
-  private:
+private:
 
     void moveForwardUpToBranch();
     void moveBackwardUpToBranch();

@@ -10,24 +10,24 @@ std::uniform_real_distribution<double> Random::_unif(0, 1.0);
 
 void Random::setSeed(unsigned int seed)
 {
-  _seed = seed;
-  _generator.seed(_seed);
+    _seed = seed;
+    _generator.seed(_seed);
 }
 
 
 double Random::uniform()
 {
-  return _unif(_generator);
+    return _unif(_generator);
 }
 
 
 double Random::uniform(double a, double b)
 {
-  return a + uniform() * (b - a);
+    return a + uniform() * (b - a);
 }
 
 
 bool Random::trueWithProbability(double p)
 {
-  return uniform() < p;
+    return uniform() < p;
 }

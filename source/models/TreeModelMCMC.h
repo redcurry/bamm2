@@ -11,7 +11,7 @@ class ModelProposal;
 
 class TreeModelMCMC : public MCMC
 {
-  protected:
+protected:
 
     virtual ModelProposal* createModelProposal(Model* model) const;
 };
@@ -19,7 +19,7 @@ class TreeModelMCMC : public MCMC
 
 inline ModelProposal* TreeModelMCMC::createModelProposal(Model* model) const
 {
-  return new TreeModelProposal((TreeModel*)model);
+    return new TreeModelProposal((TreeModel*)model);
 }
 
 #endif

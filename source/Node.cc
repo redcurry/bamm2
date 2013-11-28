@@ -6,123 +6,122 @@
 
 Node::Node() : _name(""), _length(0.0), _parentNode(NULL)
 {
-  _childNodes.reserve(2);
+    _childNodes.reserve(2);
 }
 
 
 Node::~Node()
 {
-  std::for_each(_childNodes.begin(), _childNodes.end(), deleteNode);
+    std::for_each(_childNodes.begin(), _childNodes.end(), deleteNode);
 }
 
 
 void Node::setName(const std::string &name)
 {
-  _name = name;
+    _name = name;
 }
 
 
 const std::string &Node::name() const
 {
-  return _name;
+    return _name;
 }
 
 
 void Node::setBranchLength(double length)
 {
-  _length = length;
+    _length = length;
 }
 
 
 double Node::branchLength() const
 {
-  return _length;
+    return _length;
 }
 
 
 double Node::pathLengthToRoot() const
 {
-  double length = branchLength();
+    double length = branchLength();
 
-  const Node *node = this;
-  while(node->hasParentNode())
-  {
-    node = node->parentNode();
-    length += node->branchLength();
-  }
+    const Node *node = this;
+    while(node->hasParentNode()) {
+        node = node->parentNode();
+        length += node->branchLength();
+    }
 
-  return length;
+    return length;
 }
 
 
 bool Node::isBranchNode() const
 {
-  return hasChildNodes();
+    return hasChildNodes();
 }
 
 
 bool Node::isTerminalNode() const
 {
-  return !hasChildNodes();
+    return !hasChildNodes();
 }
 
 
 void Node::setParentNode(Node *parentNode)
 {
-  _parentNode = parentNode;
+    _parentNode = parentNode;
 }
 
 
 Node *Node::parentNode()
 {
-  return _parentNode;
+    return _parentNode;
 }
 
 
 const Node *Node::parentNode() const
 {
-  return _parentNode;
+    return _parentNode;
 }
 
 
 bool Node::hasParentNode() const
 {
-  return _parentNode != NULL;
+    return _parentNode != NULL;
 }
 
 
 NodeList &Node::childNodes()
 {
-  return _childNodes;
+    return _childNodes;
 }
 
 
 const NodeList &Node::childNodes() const
 {
-  return _childNodes;
+    return _childNodes;
 }
 
 
 void Node::addChildNode(Node *childNode)
 {
-  childNode->setParentNode(this);
-  _childNodes.push_back(childNode);
+    childNode->setParentNode(this);
+    _childNodes.push_back(childNode);
 }
 
 
 int Node::childCount() const
 {
-  return _childNodes.size();
+    return _childNodes.size();
 }
 
 
 bool Node::hasChildNodes() const
 {
-  return _childNodes.size() > 0;
+    return _childNodes.size() > 0;
 }
 
 
 void Node::deleteNode(Node *node)
 {
-  delete node;
+    delete node;
 }

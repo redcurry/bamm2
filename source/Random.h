@@ -8,7 +8,7 @@
 
 class Random
 {
-  public:
+public:
 
     static void setSeed(unsigned int seed);
 
@@ -17,7 +17,7 @@ class Random
 
     static bool trueWithProbability(double p);
 
-  private:
+private:
 
     static unsigned int _seed;
     static std::mt19937 _generator;

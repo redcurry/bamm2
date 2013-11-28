@@ -7,7 +7,7 @@ class TestModel;
 
 class TestModelProposal : public ModelProposal
 {
-  public:
+public:
 
     TestModelProposal(TestModel* model);
     virtual ~TestModelProposal() { }
@@ -17,7 +17,7 @@ class TestModelProposal : public ModelProposal
     virtual double logPriorRatio() const;
     virtual double logProposalRatio() const;
 
-  private:
+private:
 
     void proposeNumberOfEvents();
     void proposeEventRate();

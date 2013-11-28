@@ -12,7 +12,7 @@ class Tree;
 
 class TreeModel : public Model
 {
-  public:
+public:
 
     TreeModel(const Tree* tree);    // TODO: Consider "const Tree&" instead
     virtual ~TreeModel() { }
@@ -24,7 +24,7 @@ class TreeModel : public Model
     const std::vector<Event>& events() const;
     std::vector<Event>& events();
 
-  private:
+private:
 
     const Tree* _tree;
     std::vector<Event> _events;
@@ -33,19 +33,19 @@ class TreeModel : public Model
 
 inline const Tree* TreeModel::tree() const
 {
-  return _tree;
+    return _tree;
 }
 
 
 inline const std::vector<Event>& TreeModel::events() const
 {
-  return _events;
+    return _events;
 }
 
 
 inline std::vector<Event>& TreeModel::events()
 {
-  return _events;
+    return _events;
 }
 
 

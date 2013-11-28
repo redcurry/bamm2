@@ -4,7 +4,7 @@
 
 class ModelProposal
 {
-  public:
+public:
 
     virtual ~ModelProposal() { }
 

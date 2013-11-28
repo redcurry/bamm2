@@ -7,7 +7,7 @@ class ModelProposal;
 
 class Model
 {
-  public:
+public:
 
     virtual ~Model() { }
 
@@ -17,7 +17,7 @@ class Model
 
 inline std::ostream& operator<<(std::ostream& out, const Model* model)
 {
-  return model->print(out);
+    return model->print(out);
 }
 
 

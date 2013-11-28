@@ -5,24 +5,24 @@
 
 double ModelProposal::acceptanceRatio() const
 {
-  double logRatio = logPriorRatio() + logLikelihoodRatio() + logProposalRatio();
-  return std::min(1.0, std::exp(logRatio));
+    double logRatio = logPriorRatio() + logLikelihoodRatio() + logProposalRatio();
+    return std::min(1.0, std::exp(logRatio));
 }
 
 
 double ModelProposal::logPriorRatio() const
 {
-  return 0.0;
+    return 0.0;
 }
 
 
 double ModelProposal::logLikelihoodRatio() const
 {
-  return 0.0;
+    return 0.0;
 }
 
 
 double ModelProposal::logProposalRatio() const
 {
-  return 0.0;
+    return 0.0;
 }
