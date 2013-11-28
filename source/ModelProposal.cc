@@ -1,28 +1,26 @@
 #include "ModelProposal.h"
-#include <cmath>
+#include "Model.h"
+
 #include <algorithm>
+
+
+ModelProposal::ModelProposal(Model& model) : _model(model)
+{
+}
+
+
+ModelPoprosal::~ModelProposal()
+{
+}
 
 
 double ModelProposal::acceptanceRatio() const
 {
-    double logRatio = logPriorRatio() + logLikelihoodRatio() + logProposalRatio();
-    return std::min(1.0, std::exp(logRatio));
+    return std::min(1.0, productOfRatios());
 }
 
 
-double ModelProposal::logPriorRatio() const
+void ModelProposal::accept() const
 {
-    return 0.0;
-}
-
-
-double ModelProposal::logLikelihoodRatio() const
-{
-    return 0.0;
-}
-
-
-double ModelProposal::logProposalRatio() const
-{
-    return 0.0;
+    matchModelToProposal();
 }

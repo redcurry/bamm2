@@ -1,19 +1,33 @@
 #ifndef MODEL_PROPOSAL_H
 #define MODEL_PROPOSAL_H
 
+class Model;
+
 
 class ModelProposal
 {
 public:
 
-    virtual ~ModelProposal() { }
+    ModelProposal(Model& model);
+    virtual ~ModelProposal();
 
-    virtual void accept() const = 0;
+    double acceptanceRatio() const;
+    void accept() const;
 
-    virtual double acceptanceRatio() const;
-    virtual double logPriorRatio() const;
-    virtual double logLikelihoodRatio() const;
-    virtual double logProposalRatio() const;
+protected:
+
+    Model& _model;
+
+private:
+
+    // This method is called by acceptanceRatio(),
+    // and it calculates priorRatio * likelihoodRatio * qRatio
+    virtual double productOfRatios() const = 0;
+
+    // This method is called by accept(),
+    // and it makes the model match the proposal
+    virtual void matchModelToProposal() const = 0;
 };
+
 
 #endif

@@ -1,20 +1,17 @@
 #include "MCMC.h"
-#include "Model.h"
-#include "ModelProposal.h"
 #include "Random.h"
-
-#include <iostream>
-#include <algorithm>
-#include <cmath>
+#include "Log.h"
 
 
 template <typename ModelType>
 void MCMC::run(const ModelType& initialModel, int numSteps) const
 {
+    typedef typename ModelType::Proposal ModelProposalType;
+
     ModelType model = initialModel;
 
     while (numSteps-- > 0) {
-        typename ModelType::Proposal proposal = model.createProposal();
+        ModelProposalType proposal(model);
 
         double acceptanceProb = proposal.acceptanceRatio();
         if (Random::trueWithProbability(acceptanceProb)) {
