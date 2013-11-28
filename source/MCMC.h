@@ -1,8 +1,6 @@
 #ifndef MCMC_H
 #define MCMC_H
 
-#include <iosfwd>
-
 
 template <typename ModelType>
 class MCMC
