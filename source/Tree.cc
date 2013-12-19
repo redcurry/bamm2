@@ -5,7 +5,8 @@
 #include "Node.h"
 
 
-Tree::Tree(Node *rootNode) : _rootNode(rootNode)
+Tree::Tree(Node *rootNode) : _rootNode(rootNode),
+    _postOrderTraversalCreated(false)
 {
 }
 
@@ -59,7 +60,7 @@ bool Tree::isUltrametric() const
 NodeList Tree::terminalNodes() const
 {
     NodeList nodes;
-    findTerminalNodes(const_cast<Node *>(rootNode()), nodes);
+    findTerminalNodes(const_cast<Node*>(rootNode()), nodes);
     return nodes;
 }
 
@@ -75,4 +76,36 @@ void Tree::findTerminalNodes(Node *node, NodeList &nodes) const
     } else {
         nodes.push_back(node);
     }
+}
+
+
+NodeConstIterator Tree::beginPostOrderTraversal() const
+{
+    if (!_postOrderTraversalCreated) {
+        createPostOrderTraversal(_rootNode);
+        _postOrderTraversalCreated = true;
+    }
+
+    return _postOrderTraversal.cbegin();
+}
+
+
+void Tree::createPostOrderTraversal(const Node* node) const
+{
+    for (auto childNode : node->childNodes()) {
+        createPostOrderTraversal(childNode);
+    }
+
+    _postOrderTraversal.push_back(node);
+}
+
+
+NodeConstIterator Tree::endPostOrderTraversal() const
+{
+    if (!_postOrderTraversalCreated) {
+        createPostOrderTraversal(_rootNode);
+        _postOrderTraversalCreated = true;
+    }
+
+    return _postOrderTraversal.cend();
 }

@@ -25,10 +25,10 @@ private:
     void proposeEventAdd();
     void proposeEventRemove();
 
-    TreeModel* _model;
-    TreeModel* _proposedModel;
+    TreeModel& _model;
+    TreeModel& _proposedModel;
 
-    double _window;
+
 };
 
 

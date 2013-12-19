@@ -7,11 +7,46 @@
 #include "Tree.h"
 
 
-TreeModelProposal::TreeModelProposal(TreeModel* model) :
-    _model(model), _window(1.0)
+TreeModelProposal::TreeModelProposal(const TreeModel& model) :
+    _model(model), _proposedModel(model), _config(Config::instance())
 {
-    _proposedModel = new TreeModel(*model);
+    setUpEventProposers();
+}
 
+
+void TreeModelProposal::setUpEventProposers()
+{
+    // Set up proposer for adding events
+    _eventChangeNumberProposer = new StepProposer(1, 0);
+
+    double windowSize = 0.0;
+
+    // Set up proposer for moving events locally
+    windowSize = _config.get<double>("event_local_move_proposer_window_size");
+    maxTreeTime = maximumTreeTime(_model.tree());
+    _eventLocalMoveProposer = new UniformProposer(windowSize, 0.0, maxTreeTime);
+
+    // Set up proposer for moving events globally
+    // TODO: Will need to set up a tree mapping
+}
+
+
+double TreeModelProposal::maximumTreeTime(const Tree& tree) const
+{
+    NodeList tips = tree.terminalNodes();
+
+    if (!tips.empty()) {
+        // Assumes tree is ultrametric
+        return tips[0].pathLengthToRoot();
+    } else {
+        log(Error) << "Tree has no tip nodes.\n";
+        std::exit(1);
+    }
+}
+
+
+void TreeModelProposal::propose()
+{
     if (Random::accept(0.5)) {
         proposeEventMove();
     } else {

@@ -2,12 +2,22 @@
 #define MCMC_H
 
 
-template <typename ModelType>
+class Model;
+class ModelProposer;
+
+
 class MCMC
 {
 public:
 
-    void run(const ModelType& model, int numSteps) const;
+    MCMC(const Model& initialModel, const ModelProposer& modelProposer);
+
+    void run(int numSteps) const;
+
+private:
+
+    const Model& _initialModel;
+    const ModelProposer& _modelProposer;
 };
 
 

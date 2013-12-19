@@ -1,26 +1,51 @@
 #ifndef MODEL_H
 #define MODEL_H
 
-#include <iosfwd>
+#include "Event.h"
+#include <vector>
+
+class Tree;
 
 
-// TODO: Potentially make Model a template, where the type of the proposal
-// is specified, which is then typedef'ed inside the class as Proposal
 class Model
 {
 public:
 
-    virtual ~Model();
+    Model(const Tree& tree);
+    virtual ~Model() { }
 
-    void print(std::ostream& out) const;
+    const Tree& tree() const;
 
-private:
+    const std::vector<Event*>& events() const;
+    std::vector<Event*>& events();
 
-    virtual void write(std::ostream& out) const = 0;
+    double logLikelihood() const;
+
+protected:
+
+    virtual specificLogLikelihood() const = 0;
+
+    const Tree& _tree;
+    std::vector<Event*> _events;
 };
 
 
-std::ostream& operator<<(std::ostream& out, const Model& model);
+inline const Tree& Model::tree() const
+{
+    return _tree;
+}
+
+
+inline const std::vector<Event*>& Model::events() const
+{
+    return _events;
+}
+
+
+inline std::vector<Event*>& Model::events()
+{
+    return _events;
+}
 
 
 #endif

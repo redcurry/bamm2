@@ -9,6 +9,7 @@ class Event
 public:
 
     Event(const Node* node, double absoluteTime);
+    virtual ~Event() {}
 
     const Node* node() const;
     void setNode(const Node* node);

@@ -5,6 +5,10 @@
 
 #include "Node.h"
 
+
+typedef vector<Node*>::const_iterator NodeConstIterator;
+
+
 class Tree
 {
 public:
@@ -23,11 +27,18 @@ public:
 
     NodeList terminalNodes() const;
 
+    NodeConstIterator beginPostOrderTraversal() const;
+    NodeConstIterator endPostOrderTraversal() const;
+
 private:
 
     void findTerminalNodes(Node *node, NodeList &nodes) const;
 
     Node *_rootNode;
+
+    // Mutable variables can be changed by const member functions
+    mutable bool _postOrderTraversalCreated;
+    mutable NodeList _postOrderTraversal;
 };
 
 #endif

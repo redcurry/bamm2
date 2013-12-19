@@ -1,19 +1,13 @@
 #include "Model.h"
+#include "Tree.h"
 
 
-Model::~Model()
+Model::Model(const Tree& tree) : _tree(tree)
 {
 }
 
 
-void Model::print(std::ostream& out) const
+double Model::logLikelihood() const
 {
-    write(out);
-}
-
-
-std::ostream& operator<<(std::ostream& out, const Model& model)
-{
-    model.print(out);
-    return out;
+    return specificLogLikelihood();
 }
