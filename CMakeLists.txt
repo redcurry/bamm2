@@ -16,56 +16,33 @@ ADD_DEFINITIONS(${CXX_DEBUG_FLAGS}
                 ${CXX_OPTIMIZATION_FLAGS}
                 ${CXX_ARCHITECTURE_FLAGS})
 
-# Set Git commit id
-SET(GIT_COMMIT_ID "$(shell git rev-parse HEAD)")
-ADD_DEFINITIONS(-DGIT_COMMIT_ID=\"${GIT_COMMIT_ID}\")
+SET(BAMM2_LIBRARY_SRC
+    source/core/Event.cc
+    source/core/Event.h
+    source/core/EventMover.cc
+    source/core/EventMover.h
+    source/core/MCMC.cc
+    source/core/MCMC.h
+    source/core/Model.cc
+    source/core/Model.h
+    source/core/ModelProposal.cc
+    source/core/ModelProposal.h
+    source/core/Node.cc
+    source/core/Node.h
+    source/core/Proposer.h
+    source/core/Random.cc
+    source/core/Random.h
+    source/core/Tree.cc
+    source/core/Tree.h
+    source/core/UniformProposer.cc
+    source/core/UniformProposer.h)
 
-SET(BAMM_SRC
-    src/Autotune.cpp
-    src/BranchEvent.cpp
-    src/BranchHistory.cpp
-    src/FastSimulatePrior.cpp
-    src/Log.cpp
-    src/MCMC.cpp
-    src/MbRandom.cpp
-    src/Model.cpp
-    src/Node.cpp
-    src/Settings.cpp
-    src/SettingsParameter.cpp
-    src/TraitBranchEvent.cpp
-    src/TraitBranchHistory.cpp
-    src/TraitMCMC.cpp
-    src/TraitModel.cpp
-    src/Tree.cpp
-    src/main.cpp)
+SET(BAMM2_LIBRARY_NAME bamm2lib)
+ADD_LIBRARY(${BAMM2_LIBRARY_NAME} STATIC ${BAMM2_LIBRARY_SRC})
 
-ADD_EXECUTABLE(bamm ${BAMM_SRC})
+SET(BAMM2_APP_SRC source/app/bamm2.cc)
 
-INSTALL(TARGETS bamm
-        RUNTIME DESTINATION bin)
+SET(BAMM2_APP_NAME bamm2)
+ADD_EXECUTABLE(${BAMM2_APP_NAME} ${BAMM2_APP_SRC})
 
-SET(CPACK_PACKAGE_VERSION_MAJOR "1")
-SET(CPACK_PACKAGE_VERSION_MINOR "0")
-SET(CPACK_PACKAGE_VERSION_PATCH "0")
-
-# Concatenate version parts
-SET(MAJOR ${CPACK_PACKAGE_VERSION_MAJOR})
-SET(MINOR ${CPACK_PACKAGE_VERSION_MINOR})
-SET(PATCH ${CPACK_PACKAGE_VERSION_PATCH})
-SET(CPACK_PACKAGE_VERSION ${MAJOR}.${MINOR}.${PATCH})
-
-IF(WIN32)
-    # To be tested on a Windows machine
-    SET(CPACK_NSIS_DISPLAY_NAME "BAMM")
-    SET(CPACK_NSIS_MODIFY_PATH ON)
-ELSE(WIN32)
-    SET(CPACK_GENERATOR TGZ)
-    SET(CPACK_PACKAGE_NAME bamm)
-
-    SET(CPACK_SOURCE_PACKAGE_FILE_NAME
-        ${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION})
-    SET(CPACK_SOURCE_GENERATOR TGZ)
-    SET(CPACK_SOURCE_IGNORE_FILES build Rcode skeleton doc)
-ENDIF(WIN32)
-
-INCLUDE(CPack)
+TARGET_LINK_LIBRARIES(${BAMM2_APP_NAME} ${BAMM2_LIBRARY_NAME})

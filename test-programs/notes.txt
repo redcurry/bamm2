@@ -1,1 +1,0 @@
-clang++ -g -std=c++11 -stdlib=libc++ -o test test.cc TestModel.cc TestModelProposal.cc Random.cc ModelProposal.cc MCMC.cc
