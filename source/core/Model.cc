@@ -11,3 +11,15 @@ double Model::logLikelihood() const
 {
     return specificLogLikelihood();
 }
+
+
+ModelProposal* Model::createProposal() const
+{
+    return specificCreateProposal();
+}
+
+
+void Model::acceptProposal(const ModelProposal* proposal)
+{
+    specificAcceptProposal(proposal);
+}

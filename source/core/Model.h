@@ -5,6 +5,7 @@
 #include <vector>
 
 class Tree;
+class ModelProposal;
 
 
 class Model
@@ -21,9 +22,15 @@ public:
 
     double logLikelihood() const;
 
+    ModelProposal* createProposal() const;
+    void acceptProposal(const ModelProposal* proposal);
+
 protected:
 
-    virtual specificLogLikelihood() const = 0;
+    virtual double specificLogLikelihood() const = 0;
+
+    virtual ModelProposal* specificCreateProposal() const = 0;
+    virtual void specificAcceptProposal(const ModelProposal* proposal) = 0;
 
     const Tree& _tree;
     std::vector<Event*> _events;
