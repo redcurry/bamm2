@@ -4,7 +4,7 @@
 double SpExModel::specificLogLikelihood() const
 {
     NodeConstIterator beginIt = _tree.beginPostOrderTraversal();
-    NodeConstIterator endIt = _tree.beginPostOrderTraversal();
+    NodeConstIterator endIt = _tree.endPostOrderTraversal();
 
     for (NodeConstIterator it = beginIt; it != endIt; ++it) {
         const Node* node = *it;
@@ -207,4 +207,14 @@ double SpExModel::calculateBranchIntervalExtinctionProb
 double SpExModel::sqr(double x) const
 {
     return x * x;
+}
+
+
+ModelProposal* SpExModel::specificCreateProposal() const
+{
+}
+
+
+void SpExModel::specificAcceptProposal(const ModelProposal* proposal)
+{
 }

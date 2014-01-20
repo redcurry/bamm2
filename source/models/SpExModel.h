@@ -10,6 +10,9 @@ class SpExModel : public Model
 protected:
 
     virtual double specificLogLikelihood() const;
+
+    virtual ModelProposal* specificCreateProposal() const;
+    virtual void specificAcceptProposal(const ModelProposal* proposal);
 };
 
 
